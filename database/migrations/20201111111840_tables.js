@@ -1,8 +1,53 @@
 
 exports.up = function(knex) {
-  
+  return knex.schema.createTable('users', tbl => {
+    tbl.increments("userId")
+      .unsigned()
+      .notNullable()
+    tbl.text("username", 30)
+      .unique()
+      .notNullable()
+    tbl.text("address")
+    tbl.text("password")
+      .notNullable()
+  })
+  .createTable("addresses", tbl => {
+    tbl.increments("addressId")
+      .unsigned()
+      .notNullable()
+    tbl.text("name", 30)
+      .notNullable()
+    tbl.text("address")
+      .notNullable()
+    tbl.text("coordinates")
+      .notNullable()
+    tbl.integer("userId")
+      .unsigned()
+      .notNullable()    
+      .references('userId')
+      .inTable('users')
+  })
+  .createTable("locations", tbl => {
+    tbl.increments("locationId")
+      .unsigned()
+      .notNullable()
+    tbl.text("name")
+      .notNullable()
+    tbl.text("address")
+      .notNullable()
+    tbl.text("website")
+    tbl.text("phone")
+    tbl.text("picture")
+    tbl.integer("addressBookId")
+      .unsigned()
+      .notNullable()    
+      .references('addressId')
+      .inTable('addresses')
+  })
 };
 
 exports.down = function(knex) {
-  
+  return knex.schema.dropTableIfExists('locations')
+    .dropTableIfExists('addresses')
+    .dropTableIfExists('users')
 };
