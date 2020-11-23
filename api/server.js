@@ -10,6 +10,10 @@ const server = express();
 server.use(express.json())
 server.use(cors());
 
+server.get("/", (req, res) => {
+  res.status(200).json("You made it!")
+})
+
 // async function verifyToken(req, res, next) {
 //   const idToken = req.headers.authorization
 //   try {
