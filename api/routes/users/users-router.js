@@ -22,7 +22,7 @@ router.delete("/delete-user", (req, res) => {
 })
 
 router.post("/category", (req, res) => {
-  Users.addCategory(req.body.uid)
+  Users.addCategory(req.body.uid, req.body.category)
   .then(data => {
     res.status(200).json(data)
   })
@@ -32,7 +32,7 @@ router.post("/category", (req, res) => {
 })
 
 router.delete("/category", (req, res) => {
-  Users.deleteCategory(req.body.uid)
+  Users.deleteCategory(req.body.uid, req.body.category)
   .then(data => {
     res.status(200).json(data)
   })
