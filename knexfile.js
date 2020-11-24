@@ -1,4 +1,4 @@
-// Update with your config settings.
+const pgConnection = process.env.DATABASE_URL || "postgres://wysavweowsmoak:94d5e61be589fd0e6f66c17eb62727874a4a593d6e3cc68150e739b75d55cc5c@ec2-34-200-106-49.compute-1.amazonaws.com:5432/d69ajj017np47e"
 
 module.exports = {
 
@@ -33,18 +33,17 @@ module.exports = {
   },
 
   production: {
-    client: 'postgresql',
-    connection: {
-      database: process.env.POSTGRES_DATABASE,
-      user:     process.env.POSTGRES_USER,
-      password: process.env.POSTGRES_PASSWORD
-    },
+    client: 'pg',
+    connection: pgConnection,
     pool: {
       min: 2,
       max: 10
     },
     migrations: {
-      tableName: 'knex_migrations'
+      directory: './database/migrations'
+    },
+    seeds: {
+      directory: "./database/seeds"
     }
   }
 
