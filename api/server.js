@@ -18,7 +18,6 @@ async function verifyToken(req, res, next) {
   const idToken = req.headers.authorization
   try {
     const decodedToken = await admin.auth().verifyIdToken(idToken)
-    
     if(decodedToken) {
       req.body.uid = decodedToken.uid
       return next()
@@ -26,7 +25,6 @@ async function verifyToken(req, res, next) {
       return res.status(401).send("You are not authorized")
     }
   } catch (error) {
-    console.log(error)
     return res.status(401).send("What happened!")
   }
 }
