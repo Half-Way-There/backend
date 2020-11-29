@@ -7,7 +7,7 @@ module.exports = {
 }
 
 async function addContact(uid, contact) {
-  await db("addresses").insert({...contact})
+  await db("addresses").insert({ name: contact.name, address: contact.address, userId: contact.userId})
   const user = await db("users").select("uid", "address").where("uid", uid).first()
   const categories = await db("categories").select("id", "category", "userId").where("userId", uid)
   const addresses = await db("addresses").select("addressId", "name as contactName", "address").where("userId", uid)
