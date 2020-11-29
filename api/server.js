@@ -14,24 +14,24 @@ server.get("/", (req, res) => {
   res.status(200).json("You made it!")
 })
 
-// async function verifyToken(req, res, next) {
-//   const idToken = req.headers.authorization
-//   try {
-//     const decodedToken = await admin.auth().verifyIdToken(idToken)
+async function verifyToken(req, res, next) {
+  const idToken = req.headers.authorization
+  try {
+    const decodedToken = await admin.auth().verifyIdToken(idToken)
+    
+    if(decodedToken) {
+      req.body.uid = decodedToken.uid
+      return next()
+    } else {
+      return res.status(401).send("You are not authorized")
+    }
+  } catch (error) {
+    console.log(error)
+    return res.status(401).send("What happened!")
+  }
+}
 
-//     if(decodedToken) {
-//       req.body.uid = decodedToken.uid
-//       return next()
-//     } else {
-//       return res.status(401).send("You are not authorized")
-//     }
-//   } catch (error) {
-//     console.log(error)
-//     return res.status(401).send("What happened!")
-//   }
-// }
-
-// server.use("/", verifyToken)
+server.use("/", verifyToken)
 server.use("/auth", Auth)
 server.use("/users", Users)
 server.use("/locations", Locations)
