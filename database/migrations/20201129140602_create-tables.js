@@ -5,6 +5,7 @@ exports.up = function(knex) {
       .unique()
       .notNullable()
     tbl.text("address")
+    tbl.integer("defaultRadius")
   })
   .createTable("addresses", tbl => {
     tbl.increments("addressId")

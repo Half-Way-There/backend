@@ -21,8 +21,8 @@ router.put("/update", (req, res) => {
   })
 })
 
-router.delete("/remove", (req, res) => {
-  Addresses.deleteContact(req.body.uid, req.body.contact)
+router.delete("/remove/:id", (req, res) => {
+  Addresses.deleteContact(req.body.uid, req.params.id)
   .then(data => {
     res.status(200).json(data)
   })

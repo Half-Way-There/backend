@@ -1,8 +1,8 @@
 const router = require("express").Router()
 const Users = require("./users-helpers.js")
 
-router.post("/address", (req, res) => {
-  Users.updateAddress(req.body.uid, req.body.address)
+router.post("/update", (req, res) => {
+  Users.updateUser(req.body.uid, req.body.user)
   .then(data => {
     res.status(200).json(data)
   })
@@ -31,8 +31,8 @@ router.post("/category", (req, res) => {
   })
 })
 
-router.delete("/category", (req, res) => {
-  Users.deleteCategory(req.body.uid, req.body.category)
+router.delete("/category/:id", (req, res) => {
+  Users.deleteCategory(req.body.uid, req.params.id)
   .then(data => {
     res.status(200).json(data)
   })
