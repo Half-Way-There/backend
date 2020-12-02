@@ -6,9 +6,9 @@ const Users = require("./routes/users/users-router.js")
 const Locations = require("./routes/locations/locations-router.js")
 const Addresses = require("./routes/addresses/addresses-router.js")
 
-const server = express();
+const server = express()
 server.use(express.json())
-server.use(cors());
+server.use(cors())
 
 server.get("/", (req, res) => {
   res.status(200).json("You made it!")
