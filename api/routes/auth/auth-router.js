@@ -12,7 +12,7 @@ router.post("/login", (req, res) => {
 })
 
 router.post("/register", (req, res) => {
-  Users.addUser(req.body.uid)
+  Users.addUser(req.body.uid, req.body.address)
   .then(data => {
     res.status(201).json(data)
   })

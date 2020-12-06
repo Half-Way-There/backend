@@ -9,7 +9,7 @@ module.exports = {
 
 async function updateUser(uid, updates) {
   await db("users").where("uid", uid).update(updates)
-  const user = await db("users").select("uid", "address", "defaultRadius").where("uid", uid)
+  const user = await db("users").select("uid", "address", "defaultRadius", "tour").where("uid", uid)
   const categories = await db("categories").select("id", "category", "userId").where("userId", uid)
   const addresses = await db("addresses").select("addressId", "name as contactName", "address").where("userId", uid)
   const locations = await db("locations").select("locationId", "addressBookId", "name", "address", "website", "phone", "picture").where( "userId", uid)
@@ -41,7 +41,7 @@ async function deleteUser(uid) {
 
 async function addCategory(uid, category) {
   await db("categories").insert(category)
-  const user = await db("users").select("uid", "address", "defaultRadius").where("uid", uid)
+  const user = await db("users").select("uid", "address", "defaultRadius", "tour").where("uid", uid)
   const categories = await db("categories").select("id", "category", "userId").where("userId", uid)
   const addresses = await db("addresses").select("addressId", "name as contactName", "address").where("userId", uid)
   const locations = await db("locations").select("locationId", "addressBookId", "name", "address", "website", "phone", "picture").where( "userId", uid)
@@ -63,7 +63,7 @@ async function addCategory(uid, category) {
 
 async function deleteCategory(uid, category) {
   await db("categories").where("id", category).del()
-  const user = await db("users").select("uid", "address", "defaultRadius").where("uid", uid)
+  const user = await db("users").select("uid", "address", "defaultRadius", "tour").where("uid", uid)
   const categories = await db("categories").select("id", "category", "userId").where("userId", uid)
   const addresses = await db("addresses").select("addressId", "name as contactName", "address").where("userId", uid)
   const locations = await db("locations").select("locationId", "addressBookId", "name", "address", "website", "phone", "picture").where( "userId", uid)
