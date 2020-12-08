@@ -3,31 +3,31 @@ const pgConnection = process.env.DATABASE_URL || "postgres://wysavweowsmoak:94d5
 module.exports = {
 
   development: {
-    client: 'sqlite3',
+    client: "sqlite3",
     connection: {
-      filename: './database/halfwaythere.db3'
+      filename: "./database/halfwaythere.db3",
     },
     useNullAsDefault: true,
     migrations: {
-      directory: "./database/migrations"
+      directory: "./database/migrations",
     },
     seeds: {
-      directory: "./database/seeds"
+      directory: "./database/seeds",
     },
   },
 
   production: {
-    client: 'pg',
+    client: "pg",
     connection: pgConnection,
     pool: {
       min: 2,
-      max: 10
+      max: 10,
     },
     migrations: {
-      directory: './database/migrations'
+      directory: "./database/migrations",
     },
     seeds: {
-      directory: "./database/seeds"
-    }
-  }
-};
+      directory: "./database/seeds",
+    },
+  },
+}

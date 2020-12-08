@@ -1,6 +1,6 @@
 const express = require("express")
-const cors = require("cors");
-const admin = require('./firebase-admin/admin');
+const cors = require("cors")
+const admin = require("./firebase-admin/admin")
 const Auth = require("./routes/auth/auth-router.js")
 const Users = require("./routes/users/users-router.js")
 const Locations = require("./routes/locations/locations-router.js")
@@ -18,12 +18,11 @@ async function verifyToken(req, res, next) {
   const idToken = req.headers.authorization
   try {
     const decodedToken = await admin.auth().verifyIdToken(idToken)
-    if(decodedToken) {
+    if (decodedToken) {
       req.body.uid = decodedToken.uid
       return next()
-    } else {
-      return res.status(401).send("You are not authorized")
     }
+    return res.status(401).send("You are not authorized")
   } catch (error) {
     return res.status(401).send("What happened!")
   }
@@ -35,4 +34,4 @@ server.use("/users", Users)
 server.use("/locations", Locations)
 server.use("/contact", Addresses)
 
-module.exports = server;
+module.exports = server
