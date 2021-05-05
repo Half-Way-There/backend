@@ -1,15 +1,4 @@
-const { Client } = require("pg")
-
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
-})
-
-client.connect()
-
-const pgConnection = client || "postgres://wysavweowsmoak:94d5e61be589fd0e6f66c17eb62727874a4a593d6e3cc68150e739b75d55cc5c@ec2-34-200-106-49.compute-1.amazonaws.com:5432/d69ajj017np47e"
+const pgConnection = process.env.DATABASE_URL || "postgres://wysavweowsmoak:94d5e61be589fd0e6f66c17eb62727874a4a593d6e3cc68150e739b75d55cc5c@ec2-34-200-106-49.compute-1.amazonaws.com:5432/d69ajj017np47e"
 
 module.exports = {
 
