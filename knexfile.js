@@ -23,6 +23,10 @@ module.exports = {
       min: 2,
       max: 10,
     },
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    },
     migrations: {
       directory: "./database/migrations",
     },
